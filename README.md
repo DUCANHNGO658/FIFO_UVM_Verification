@@ -1,1 +1,2 @@
 # FIFO_UVM_Verification
+This verification environment is developed based on the Synchronous FIFO design from Eng. Kareem Waseem's course (Digital Verification using SV & UVM).   Only the original DUT design and Interface files are utilized as base specifications. The complete UVM testbench architecture, functional coverage, and assertion checks were designed and implemented independently. 
