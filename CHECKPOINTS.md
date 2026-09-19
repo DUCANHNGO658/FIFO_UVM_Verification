@@ -4,8 +4,8 @@
 - **Implemented `FIFO_seq_item.sv`:**
   - Declared transaction data fields (stimulus and response signals).
   - Defined input stimulus (`data_in`, `rst_n`, `wr_en`, `rd_en`) and monitored output signals (`data_out`, status flags).
-  - Established distribution constraints for randomized inputs (`rst_n`, `wr_en`, `rd_en`)[cite: 1, 2].
-  - Encapsulated the class inside `FIFO_seq_item_pkg`[cite: 1].
+  - Established distribution constraints for randomized inputs (`rst_n`, `wr_en`, `rd_en`).
+  - Encapsulated the class inside `FIFO_seq_item_pkg`.
 - **Implemented `FIFO_config_obj.sv`:**
   - Encapsulated the virtual interface handle (`virtual FIFO_if`) inside a `uvm_object` for `uvm_config_db` propagation.
 
