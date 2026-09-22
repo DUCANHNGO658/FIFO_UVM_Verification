@@ -11,3 +11,11 @@
 
 **Next Steps (Upcoming 2 Days):**
 - Implement `FIFO_sequencer` and `FIFO_driver` to complete the stimulus driving pipeline.
+
+### 2026-09-22: Define and implement the fifo sequencer
+
+- **Implemented 'FIFO_sequencer.sv':**
+  - Extends `uvm_sequencer #(FIFO_seq_item).
+  - Registered with uvm_component_utils.
+  - Wrapped inside "FIFO_sequencer_pkg"
+
