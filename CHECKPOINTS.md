@@ -19,3 +19,9 @@
   - Registered with uvm_component_utils.
   - Wrapped inside "FIFO_sequencer_pkg"
 
+### 20206-09-28: Define and implement the fifo_monitor
+- Implemented 'FIFO_monitor.sv"
+  - Extends 'uvm_monitor' and registered with factory
+  - Instantiated 'uvm_analysis_port #(FIFO_seq_item in build_phase
+  - Sampled DUT inputs/outputs at negedge monitor_vif.clk in run_phase
+  - Broadcasted captured transaction via 'mon_ap.write()'
