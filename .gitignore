@@ -1,0 +1,10 @@
+xsim.dir/
+xsim.covdb/
+xsim.codeCov/
+.Xil/
+cov_db/
+cov_report/
+*.log
+*.pb
+*.jou
+dfx_runtime.txt
