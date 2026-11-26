@@ -1,33 +1,30 @@
-`include "uvm_pkg_all_v2020_3_2_nodpi.svh"
-
+`ifndef FIFO_SEQ_ITEM
+`define FIFO_SEQ_ITEM
+`include "uvm_macros.svh"
 
 package FIFO_seq_item_pkg;
-import uvm_pkg::*;
+    import uvm_pkg::*;
 parameter FIFO_WIDTH = 16;
 
 class FIFO_seq_item extends uvm_sequence_item;
-`uvm_object_utils(FIFO_seq_item)
+    `uvm_object_utils(FIFO_seq_item)
 
-//declare the input and output
-rand bit [FIFO_WIDTH-1:0] data_in;
-rand bit  wr_en,rd_en,rst_n;
+//declare the input output
+    rand bit [FIFO_WIDTH-1:0] data_in;
+    rand bit wr_en,rd_en,rst_n;
+    bit [FIFO_WIDTH-1:0] data_out;
+    bit full, almostfull, empty, almostempty, overflow,underflow,wr_ack;
 
-bit [FIFO_WIDTH-1:0] data_out;
-bit full, almostfull, empty, almostempty, overflow, underflow, wr_ack;
+//distribution weights
+    int RD_EN_ON_DIST;
+    int WR_EN_ON_DIST;
 
-//Distribution weigths
-int RD_EN_ON_DIST;
-int WR_EN_ON_DIST;
+    function new(string name="fifo_seq_item", int RD_EN_ON_DIST =40, int WR_EN_ON_DIST = 60);
+        super.new(name);
+        this.RD_EN_ON_DIST=RD_EN_ON_DIST;
+        this.WR_EN_ON_DIST=WR_EN_ON_DIST;
+        endfunction
 
-//Write the contructor
-function new(string name ="fifo_seq_item", int RD_EN_ON_DIST=40, int WR_EN_ON_DIST=60);
-super.new(name);
-this.RD_EN_ON_DIST=RD_EN_ON_DIST;
-this.WR_EN_ON_DIST=WR_EN_ON_DIST;
-endfunction
-
-    
-//Di
 function string convert2string();
       string s;
       s = super.convert2string();
@@ -40,23 +37,22 @@ function string convert2string();
         data_in, rst_n, wr_en, rd_en, data_out, wr_ack, overflow, full, empty, almostfull, almostempty, underflow);
     endfunction
 
-//Set constraints
-constraint reset_s{
-rst_n dist{
-    0:/ 10, 1:/ 90
-};
-}
-
-constraint rd_en_t{
-    rd_en dist{
-1:/ RD_EN_ON_DIST, 0:/ (100-RD_EN_ON_DIST)
+    //set constraint
+    constraint reset_s{
+        rst_n dist{0:/10, 1:/90
     };
 }
 
-constraint wr_en_t{
-wr_en dist{
-    1:/ WR_EN_ON_DIST, 0:/ (100-WR_EN_ON_DIST)
-};
+constraint wr_en_c{
+    wr_en dist{
+        1:/WR_EN_ON_DIST, 0:/(100-WR_EN_ON_DIST)
+    };
+}
+constraint rd_en_c{
+    rd_en dist{
+        1:/RD_EN_ON_DIST, 0:/(100-RD_EN_ON_DIST)
+    };
 }
 endclass
 endpackage
+`endif
